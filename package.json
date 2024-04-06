@@ -1,0 +1,77 @@
+{
+  "name": "react-component-generator",
+  "displayName": "react-component-generator",
+  "description": "",
+  "version": "1.0.1",
+  "engines": {
+    "vscode": "^1.81.0"
+  },
+  "publisher": "batman",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "create-component.createSingleComponent",
+        "title": "Make single component"
+      },
+      {
+        "command": "create-component.createExportedReactComponent",
+        "title": "Make component with exports"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "create-component.createSingleComponent",
+        "key": "shift+alt+m"
+      },
+      {
+        "command": "create-component.createExportedReactComponent",
+        "key": "shift+alt+n"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "create-component.createSingleComponent",
+          "group": "Create_Component",
+          "when": "explorerResourceIsFolder"
+        },
+        {
+          "command": "create-component.createExportedReactComponent",
+          "group": "Create_Component",
+          "when": "explorerResourceIsFolder"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/eslint": "8.56.7",
+    "@types/eslint-scope": "3.7.7",
+    "eslint-scope": "5.1.1",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@types/vscode": "^1.81.0",
+    "@vscode/test-electron": "^2.3.4",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
